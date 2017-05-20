@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://trng.imcs.org/BankService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BankService"
+	targetNamespace="http://trng.imcs.org/BankService/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://trng.imcs.org/BankService/"
+			xmlns:pref="http://imcs.trng.org/CreateAccount">
+			<xsd:import schemaLocation="CreateAccount.xsd"
+				namespace="http://imcs.trng.org/CreateAccount">
+			</xsd:import>
+			<xsd:import schemaLocation="GetAccount.xsd"
+				namespace="http://imcs.trng.org/CreateAccount"></xsd:import>
+			<xsd:element name="CreateAccountRequest" type="pref:CreateAccountRequest">
+    	</xsd:element>
+			<xsd:element name="CreateAccountResponse" type="pref:CreateAccountResponse">
+    	</xsd:element>
+			<xsd:element name="GetAccountRequest" type="pref:GetAccountRequest">
+    	</xsd:element>
+			<xsd:element name="GetAccountResponse" type="pref:GetAccountResponse">
+    	</xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="createAccountRequest">
+		<wsdl:part element="tns:CreateAccountRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="createAccountResponse">
+		<wsdl:part element="tns:CreateAccountResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getAccountRequest">
+		<wsdl:part name="parameters" element="tns:GetAccountRequest"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getAccountResponse">
+		<wsdl:part name="parameters" element="tns:GetAccountResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="BankService">
+		<wsdl:operation name="createAccount">
+			<wsdl:input message="tns:createAccountRequest" />
+			<wsdl:output message="tns:createAccountResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="getAccount">
+			<wsdl:input message="tns:getAccountRequest"></wsdl:input>
+			<wsdl:output message="tns:getAccountResponse"></wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="BankServiceSOAP" type="tns:BankService">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="createAccount">
+			<soap:operation soapAction="http://trng.imcs.org/BankService/createAccount" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="getAccount">
+			<soap:operation soapAction="http://trng.imcs.org/BankService/getAccount" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="BankService">
+		<wsdl:port binding="tns:BankServiceSOAP" name="BankServiceSOAP">
+			<soap:address location="http://trng.imcs.org/" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

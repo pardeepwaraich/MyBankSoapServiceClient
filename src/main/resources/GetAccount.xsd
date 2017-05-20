@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://imcs.trng.org/CreateAccount" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://imcs.trng.org/CreateAccount">
+
+    <complexType name="GetAccountRequest">
+    	<sequence>
+    		<element name="accountId" type="string" maxOccurs="1" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="GetAccountResponse">
+    	<sequence>
+    		<element name="accountId" type="string" maxOccurs="1" minOccurs="1"></element>
+    		<element name="balance" type="decimal"></element>
+    	</sequence>
+    </complexType>
+
+
+</schema>
